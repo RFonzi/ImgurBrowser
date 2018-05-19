@@ -7,20 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
-import com.bumptech.glide.Glide
+import com.bumptech.glide.load.Transformation
+import io.github.rfonzi.imgurbrowser.GlideApp
 import io.github.rfonzi.imgurbrowser.R
 import io.github.rfonzi.imgurbrowser.model.Album
-import io.github.rfonzi.imgurbrowser.model.Image
+
 import kotlinx.android.synthetic.main.gallery_item.view.*
 
 class GalleryAdapter : ListAdapter<Album, GalleryAdapter.ImageViewHolder>(IMAGE_DIFF) {
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val thumbnailUrl: String = getItem(position).images[0].link
 
-        Glide.with(holder.itemView)
+        GlideApp.with(holder.itemView)
                 .load(thumbnailUrl)
+                .centerCrop()
                 .into(holder.image)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
@@ -32,6 +34,7 @@ class GalleryAdapter : ListAdapter<Album, GalleryAdapter.ImageViewHolder>(IMAGE_
         val image: ImageView = itemView.galleryItem
 
     }
+
 
 
     companion object {

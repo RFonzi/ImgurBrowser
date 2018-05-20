@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.gallery_fragment.*
 class GalleryFragment : Fragment() {
 
     private lateinit var galleryAdapter: GalleryAdapter
-    private lateinit var albumStore: AlbumStore
+    private lateinit var galleryInterpreter: GalleryInterpreter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -34,7 +34,7 @@ class GalleryFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        albumStore = MockAlbumStore(context)
+        galleryInterpreter = GalleryInterpreter(MockAlbumStore(context))
     }
 
     override fun onResume() {
@@ -45,7 +45,7 @@ class GalleryFragment : Fragment() {
             adapter = galleryAdapter
         }
 
-        val viewModel = interpret(Observable.just(Unit), albumStore)
+        val viewModel = galleryInterpreter.interpret(Observable.just(Unit))
         viewModel.gallery
                 .observeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())

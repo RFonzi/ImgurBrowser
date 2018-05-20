@@ -9,13 +9,3 @@ import io.github.rfonzi.imgurbrowser.stores.AlbumStore
 import io.reactivex.Observable
 
 data class GalleryUiModel(val gallery: Observable<List<Album>>)
-
-fun interpret(loadRequest: Observable<Unit>, albumStore: AlbumStore): GalleryUiModel {
-    val gallery = loadRequest
-            .map { albumStore.getData() }
-            .map { it }
-
-    return GalleryUiModel(gallery)
-}
-
-

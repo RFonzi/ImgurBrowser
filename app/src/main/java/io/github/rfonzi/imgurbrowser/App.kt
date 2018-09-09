@@ -9,6 +9,9 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.singleton
 
 class App : Application(), KodeinAware {
+
+    val clientId = BuildConfig.IMGUR_CLIENT_ID
+
     override val kodein: Kodein = Kodein.lazy {
         bind<GalleryRepository>() with singleton { GalleryRepository(MockAlbumStore(applicationContext)) }
     }

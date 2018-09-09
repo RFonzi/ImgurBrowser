@@ -8,6 +8,10 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
+
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
     defaultConfig {
         applicationId "io.github.rfonzi.imgurbrowser"
         minSdkVersion 24
@@ -15,6 +19,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "IMGUR_CLIENT_ID", properties.getProperty("imgur.clientId", "")
     }
     buildTypes {
         release {

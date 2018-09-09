@@ -1,4 +1,4 @@
-package io.github.rfonzi.imgurbrowser.gallery
+package io.github.rfonzi.imgurbrowser.gallery.remote
 
 import android.content.Context
 import io.github.rfonzi.imgurbrowser.R

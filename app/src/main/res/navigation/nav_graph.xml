@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/gallery"
-        android:name="io.github.rfonzi.imgurbrowser.gallery.GalleryFragment"
+        android:name="io.github.rfonzi.imgurbrowser.gallery.ui.GalleryFragment"
         android:label="gallery_fragment"
         tools:layout="@layout/gallery_fragment" />
 </navigation>

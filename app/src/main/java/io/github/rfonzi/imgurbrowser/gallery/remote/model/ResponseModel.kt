@@ -98,4 +98,5 @@ data class ResponseImage(
 
 fun ResponseImage.toImage() = Image(link = link)
 
-fun ResponseAlbum.toAlbum() = Album(images = images.map { it.toImage() })
+fun ResponseAlbum.toAlbum() = Album(albumLink = this.link,
+        images = images.map { it.toImage() })

@@ -16,11 +16,20 @@ class GalleryAdapter : ListAdapter<Album, GalleryAdapter.ImageViewHolder>(IMAGE_
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val album = getItem(position)
 
-        GlideApp.with(holder.itemView)
-                .load(album.images[0].link)
-                .fallback(R.drawable.ic_error_outline_black_24dp)
-                .centerCrop()
-                .into(holder.image)
+        if (album.images.isNotEmpty()){
+            GlideApp.with(holder.itemView)
+                    .load(album.images[0].link)
+                    .fallback(R.drawable.ic_error_outline_black_24dp)
+                    .centerCrop()
+                    .into(holder.image)
+        }
+        else {
+            GlideApp.with(holder.itemView)
+                    .load(R.drawable.ic_error_outline_black_24dp)
+                    .centerCrop()
+                    .into(holder.image)
+        }
+
 
 
     }

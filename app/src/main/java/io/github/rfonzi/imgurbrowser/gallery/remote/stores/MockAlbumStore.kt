@@ -4,8 +4,8 @@ import android.content.Context
 import com.squareup.moshi.Moshi
 import io.github.rfonzi.imgurbrowser.gallery.remote.mockData
 import io.github.rfonzi.imgurbrowser.model.Album
-import io.github.rfonzi.imgurbrowser.model.ResponseModel
-import io.github.rfonzi.imgurbrowser.model.toAlbum
+import io.github.rfonzi.imgurbrowser.gallery.remote.model.ResponseModel
+import io.github.rfonzi.imgurbrowser.gallery.remote.model.toAlbum
 import io.reactivex.Observable
 
 class MockAlbumStore(private val context: Context) : AlbumStore {

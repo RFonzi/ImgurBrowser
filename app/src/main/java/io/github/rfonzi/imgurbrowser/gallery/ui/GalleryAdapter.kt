@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import io.github.rfonzi.imgurbrowser.GlideApp
 import io.github.rfonzi.imgurbrowser.R
 import io.github.rfonzi.imgurbrowser.model.Album
@@ -41,7 +40,7 @@ class GalleryAdapter : ListAdapter<Album, GalleryAdapter.ImageViewHolder>(IMAGE_
     }
 
     class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val image: ImageView = itemView.galleryItem
+        val image: ImageView = itemView.galleryThumbnail
 
     }
 

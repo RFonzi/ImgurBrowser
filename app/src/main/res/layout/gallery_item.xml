@@ -7,9 +7,8 @@
     <ImageView
         android:id="@+id/galleryItem"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="1:1"
-        android:scaleType="fitXY"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
         android:contentDescription="Album Image">
 
     </ImageView>

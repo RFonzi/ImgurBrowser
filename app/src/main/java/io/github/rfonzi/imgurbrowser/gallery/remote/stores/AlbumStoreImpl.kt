@@ -13,5 +13,16 @@ class AlbumStoreImpl(private val galleryService: ImgurGalleryService, private va
 
     }
 
-    private fun ResponseModel.toAlbumList() = this.data.map { it.toAlbum() }
+    private fun ResponseModel.toAlbumList() = this.data.map { it.toAlbum().changeLinksToMediumThumbnail() }
+
+    private fun Album.changeLinksToMediumThumbnail(): Album {
+        val changedLinks = this.images.map {
+            val split = it.link.split(".").toMutableList()
+            val lastIndex = split.lastIndex - 1
+            split[lastIndex] += "m"
+            it.copy(link = split.joinToString("."))
+        }
+
+        return this.copy(images = changedLinks)
+    }
 }

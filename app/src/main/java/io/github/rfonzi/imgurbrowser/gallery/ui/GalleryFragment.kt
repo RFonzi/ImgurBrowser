@@ -1,9 +1,12 @@
 package io.github.rfonzi.imgurbrowser.gallery.ui
 
 import android.arch.lifecycle.ViewModelProviders
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +46,7 @@ class GalleryFragment : Fragment(), KodeinAware {
         super.onResume()
 
         galleryRecyclerView.apply {
-            layoutManager = GridLayoutManager(context, 2)
+            layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             adapter = galleryAdapter
         }
 

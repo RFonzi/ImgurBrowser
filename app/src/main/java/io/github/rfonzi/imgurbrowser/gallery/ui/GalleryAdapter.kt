@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import io.github.rfonzi.imgurbrowser.GlideApp
 import io.github.rfonzi.imgurbrowser.R
 import io.github.rfonzi.imgurbrowser.model.Album
@@ -19,14 +20,13 @@ class GalleryAdapter : ListAdapter<Album, GalleryAdapter.ImageViewHolder>(IMAGE_
         if (album.images.isNotEmpty()){
             GlideApp.with(holder.itemView)
                     .load(album.images[0].link)
-                    .fallback(R.drawable.ic_error_outline_black_24dp)
-                    .centerCrop()
+                    .placeholder(R.drawable.ic_error_outline_black_24dp)
+                    .dontTransform()
                     .into(holder.image)
         }
         else {
             GlideApp.with(holder.itemView)
                     .load(R.drawable.ic_error_outline_black_24dp)
-                    .centerCrop()
                     .into(holder.image)
         }
 

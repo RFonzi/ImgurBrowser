@@ -50,7 +50,6 @@ class GalleryFragment : Fragment(), KodeinAware {
 
         galleryRecyclerView.apply {
             layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            addItemDecoration(SpacesItemDecoration(8))
             adapter = galleryAdapter
         }
 

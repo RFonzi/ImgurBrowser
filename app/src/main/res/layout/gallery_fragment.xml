@@ -10,7 +10,13 @@
         android:id="@+id/galleryRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="android.support.v7.widget.GridLayoutManager"
-        />
+        android:paddingTop="@dimen/cardPadding"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        android:paddingStart="@dimen/cardPadding"
+        tools:layoutManager="android.support.v7.widget.StaggeredGridLayoutManager"
+        tools:spanCount="2"
+        tools:orientation="vertical"
+        tools:listitem="@layout/gallery_item" />
 
 </android.support.constraint.ConstraintLayout>

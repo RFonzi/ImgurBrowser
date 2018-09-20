@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".gallery.ui.GalleryFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/galleryRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="android.support.v7.widget.GridLayoutManager"
-        />
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/cardPadding"
+        android:paddingTop="@dimen/cardPadding"
+        tools:layoutManager="android.support.v7.widget.StaggeredGridLayoutManager"
+        tools:listitem="@layout/gallery_item"
+        tools:orientation="vertical"
+        tools:spanCount="2" />
 
 </android.support.constraint.ConstraintLayout>

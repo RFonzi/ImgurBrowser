@@ -98,5 +98,10 @@ data class ResponseImage(
 
 fun ResponseImage.toImage() = Image(link = link)
 
-fun ResponseAlbum.toAlbum() = Album(albumLink = this.link,
-        images = images.map { it.toImage() })
+fun ResponseAlbum.toAlbum() = Album(
+        albumLink = this.link,
+        submitter = this.accountUrl,
+        images = images.map { it.toImage() },
+        title = this.title,
+        upvotes = this.ups
+)

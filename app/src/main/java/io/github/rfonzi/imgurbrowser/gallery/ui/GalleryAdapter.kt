@@ -7,14 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import android.widget.TextView
 import io.github.rfonzi.imgurbrowser.GlideApp
 import io.github.rfonzi.imgurbrowser.R
 import io.github.rfonzi.imgurbrowser.model.Album
 import kotlinx.android.synthetic.main.gallery_item.view.*
+import org.w3c.dom.Text
 
-class GalleryAdapter : ListAdapter<Album, GalleryAdapter.ImageViewHolder>(IMAGE_DIFF) {
-    override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
+class GalleryAdapter : ListAdapter<Album, GalleryAdapter.GalleryViewHolder>(IMAGE_DIFF) {
+    override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
         val album = getItem(position)
 
         if (album.images.isNotEmpty()){
@@ -30,18 +31,24 @@ class GalleryAdapter : ListAdapter<Album, GalleryAdapter.ImageViewHolder>(IMAGE_
                     .into(holder.image)
         }
 
+        holder.title.text = album.title
+        holder.submitter.text = album.submitter
+        holder.upvotes.text = album.upvotes.toString()
 
 
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.gallery_item, parent, false)
-        return ImageViewHolder(view)
+        return GalleryViewHolder(view)
     }
 
-    class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val image: ImageView = itemView.galleryItem
+    class GalleryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val image: ImageView = itemView.galleryThumbnail
+        val title: TextView = itemView.galleryTitle
+        val submitter: TextView = itemView.gallerySubmitter
+        val upvotes: TextView = itemView.galleryUpvotes
 
     }
 

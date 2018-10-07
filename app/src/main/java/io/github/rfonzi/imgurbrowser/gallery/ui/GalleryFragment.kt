@@ -16,9 +16,6 @@ import io.github.rfonzi.imgurbrowser.R
 import io.github.rfonzi.imgurbrowser.SpacesItemDecoration
 import io.github.rfonzi.imgurbrowser.gallery.remote.GalleryRepository
 import io.github.rfonzi.imgurbrowser.getFactoryFor
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.gallery_fragment.*
 import kotlinx.coroutines.experimental.CoroutineScope
 import kotlinx.coroutines.experimental.Dispatchers

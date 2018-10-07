@@ -5,8 +5,6 @@ import io.github.rfonzi.imgurbrowser.gallery.remote.GalleryRepository
 
 class GalleryViewModel(private val galleryRepository: GalleryRepository) : ViewModel() {
 
-    private fun getMockData() = galleryRepository.getFirstPage()
-
-    fun getModel() = getMockData()
+    suspend fun getModel() = galleryRepository.getFirstPage()
 
 }

@@ -4,13 +4,16 @@ import io.github.rfonzi.imgurbrowser.gallery.remote.api.ImgurGalleryService
 import io.github.rfonzi.imgurbrowser.gallery.remote.model.ResponseModel
 import io.github.rfonzi.imgurbrowser.gallery.remote.model.toAlbum
 import io.github.rfonzi.imgurbrowser.model.Album
-import io.reactivex.Observable
+import kotlinx.coroutines.experimental.CoroutineScope
+import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.experimental.Dispatchers
+import kotlinx.coroutines.experimental.async
 
 class AlbumStoreImpl(private val galleryService: ImgurGalleryService, private val clientId: String) : AlbumStore {
-    override fun getData(): Observable<List<Album>> {
-        return galleryService.getHot(clientId = clientId)
-                .map { it.toAlbumList() }
+    override suspend fun getData(): Deferred<List<Album>> {
+        val response = galleryService.getHot(clientId = clientId).await()
 
+        return CoroutineScope(Dispatchers.IO).async { response.toAlbumList() }
     }
 
     private fun ResponseModel.toAlbumList() = this.data.map { it.toAlbum().changeLinksToMediumThumbnail() }

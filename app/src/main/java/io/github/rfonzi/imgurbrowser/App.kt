@@ -1,6 +1,7 @@
 package io.github.rfonzi.imgurbrowser
 
 import android.app.Application
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 import io.github.rfonzi.imgurbrowser.gallery.remote.GalleryRepository
 import io.github.rfonzi.imgurbrowser.gallery.remote.api.ImgurGalleryService
 import io.github.rfonzi.imgurbrowser.gallery.remote.stores.AlbumStore
@@ -21,7 +22,7 @@ class App : Application(), KodeinAware {
     val retrofit = Retrofit.Builder()
             .baseUrl("https://api.imgur.com/3/")
             .addConverterFactory(MoshiConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
 
     override val kodein: Kodein = Kodein.lazy {

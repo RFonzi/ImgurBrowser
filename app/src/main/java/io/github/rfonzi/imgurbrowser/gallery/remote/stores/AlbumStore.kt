@@ -1,9 +1,9 @@
 package io.github.rfonzi.imgurbrowser.gallery.remote.stores
 
 import io.github.rfonzi.imgurbrowser.model.Album
-import io.reactivex.Observable
+import kotlinx.coroutines.experimental.Deferred
 
 interface AlbumStore {
 
-    fun getData(): Observable<List<Album>>
+    suspend fun getData(): Deferred<List<Album>>
 }

@@ -16,10 +16,11 @@ import io.github.rfonzi.imgurbrowser.R
 import io.github.rfonzi.imgurbrowser.SpacesItemDecoration
 import io.github.rfonzi.imgurbrowser.gallery.remote.GalleryRepository
 import io.github.rfonzi.imgurbrowser.getFactoryFor
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.gallery_fragment.*
+import kotlinx.coroutines.experimental.CoroutineScope
+import kotlinx.coroutines.experimental.Dispatchers
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
 
@@ -31,8 +32,6 @@ class GalleryFragment : Fragment(), KodeinAware {
     private lateinit var galleryAdapter: GalleryAdapter
     private val galleryRepo: GalleryRepository by instance()
     private lateinit var vm: GalleryViewModel
-
-    private val disposables = CompositeDisposable()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -53,17 +52,11 @@ class GalleryFragment : Fragment(), KodeinAware {
             adapter = galleryAdapter
         }
 
+        CoroutineScope(Dispatchers.Main).launch {
+            val model = vm.getModel().await()
+            render(model)
+        }
 
-        disposables.add(vm.getModel()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { render(it) })
-
-    }
-
-    override fun onDestroy() {
-        disposables.clear()
-        super.onDestroy()
     }
 
     private fun render(model: GalleryModel) {
